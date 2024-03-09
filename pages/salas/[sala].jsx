@@ -3,12 +3,22 @@ import Image from 'next/image'
 import styles from "../../styles/Home.module.css"
 import logo from "../../src/logo.png"
 import Router, { useRouter } from 'next/router'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import {cambiarColor} from '../api/Sala'
 import Swal from 'sweetalert2'
 import Exit from '@/components/icons/Exit'
+import io from 'socket.io-client';
+const socket = io.connect('http://localhost:3000');
 
 export default function Sala() {
+    const [esperandoJugadores, setEsperandoJugadores] = useState(true);
+    useEffect(() => {
+        socket.on('jugadorConectado', () => {
+            console.log('Otro jugador se ha conectado');
+            setEsperandoJugadores(true);
+            
+        });
+    }, []);
     
     Swal.fire({
         title: 'Bienvenido',
@@ -18,7 +28,7 @@ export default function Sala() {
         showConfirmButton: false,
         timer: 1500
     })
-    
+
     return (
     <div>
       <MainHead titulo={'Id de sala'}/>
@@ -104,7 +114,9 @@ export default function Sala() {
         <div>
           <center>
               <font color="white" size="4">
-                <p>Esperando jugadores... <button onClick={()=>Router.push('/')} className={styles.btnExit}><Exit/> S A L I R</button></p>
+                {esperandoJugadores?(<p>Esperando jugadores... <button onClick={()=>Router.push('/')} className={styles.btnExit}><Exit/> S A L I R</button></p>)
+                :
+                (<p><button onClick={()=>Router.push('/')} className={styles.btnExit}><Exit/> S A L I R</button></p>)}
               </font>
           </center>
         </div>

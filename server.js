@@ -1,7 +1,7 @@
 const http = require('http');
 const server = http.createServer();
 
-const port = process.env.PORT || 3001;
+const port = process.env.PORT || 3000;
 
 server.on('request', (req, res) => {
   res.writeHead(200, { 'Content-Type': 'text/plain' });
