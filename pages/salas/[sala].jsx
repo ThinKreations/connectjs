@@ -15,7 +15,7 @@ export default function Sala() {
     useEffect(() => {
         socket.on('jugadorConectado', () => {
             console.log('Otro jugador se ha conectado');
-            setEsperandoJugadores(true);
+            setEsperandoJugadores(false);
             
         });
     }, []);
@@ -114,7 +114,7 @@ export default function Sala() {
         <div>
           <center>
               <font color="white" size="4">
-                {esperandoJugadores?(<p>Esperando jugadores... <button onClick={()=>Router.push('/')} className={styles.btnExit}><Exit/> S A L I R</button></p>)
+                {!esperandoJugadores?(<p>Esperando jugadores... <button onClick={()=>Router.push('/')} className={styles.btnExit}><Exit/> S A L I R</button></p>)
                 :
                 (<p><button onClick={()=>Router.push('/')} className={styles.btnExit}><Exit/> S A L I R</button></p>)}
               </font>
