@@ -1,17 +1,57 @@
-const http = require('http');
-const { Server } = require('socket.io');
-const server = http.createServer();
+const server = require('../server');
+const io = require('socket.io')(server);
 
-const io = new Server(server, {
-    /* Configuración opcional de Socket.io */
-  });
-io.on('connection', (socket) => {
-    console.log('Un cliente se ha conectado');
-    socket.on('disconnect', () => {
-      console.log('Un cliente se ha desconectado');
+let players = {}, unmatched;
+
+io.on("connection", function (socket) {
+  console.log("socket connected");
+  socket.emit('connect', { msg: "hola" });
+  joinGame(socket);
+
+  if (getOpponent(socket)) {
+    socket.emit("game.begin", {
+      symbol: players[socket.id].symbol,
     });
-})
-const PORT = process.env.PORT || 3001;
-server.listen(PORT, () => {
-  console.log(`Servidor Socket.io escuchando en el puerto ${PORT}`);
+    getOpponent(socket).emit("game.begin", {
+      symbol: players[getOpponent(socket).id].symbol,
+    });
+  }
+
+  socket.on("make.move", function (data) {
+    if (!getOpponent(socket)) {
+      return;
+    }
+    socket.emit("move.made", data);
+    getOpponent(socket).emit("move.made", data);
+  });
+
+  socket.on("disconnect", function () {
+    if (getOpponent(socket)) {
+      getOpponent(socket).emit("opponent.left");
+    }
+  });
 });
+
+function joinGame(socket) {
+  players[socket.id] = {
+    opponent: unmatched,
+
+    symbol: "X",
+    // The socket that is associated with this player
+    socket: socket,
+  };
+  if (unmatched) {
+    players[socket.id].symbol = "O";
+    players[unmatched].opponent = socket.id;
+    unmatched = null;
+  } else {
+    unmatched = socket.id;
+  }
+}
+
+function getOpponent(socket) {
+  if (!players[socket.id].opponent) {
+    return;
+  }
+  return players[players[socket.id].opponent].socket;
+}

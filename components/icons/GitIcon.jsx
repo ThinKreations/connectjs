@@ -8,6 +8,7 @@ const GitIcon = () => (
       height="64"
       color="white"
       aria-hidden="true"
+      fill="white"
     >
       <path
         fillRule="evenodd"

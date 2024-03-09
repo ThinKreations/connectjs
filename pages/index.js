@@ -4,7 +4,7 @@ import styles from "../styles/Home.module.css"
 import logo from "../src/logo.png"
 import Router, { useRouter } from 'next/router'
 //import { createUser, setNombre } from './api/user'*/
-import GitIcon from '@/components/GitIcon'
+import GitIcon from '@/components/icons/GitIcon'
 
 export default function Home() {
   const router = useRouter()

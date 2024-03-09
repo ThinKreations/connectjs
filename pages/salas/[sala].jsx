@@ -6,6 +6,7 @@ import Router, { useRouter } from 'next/router'
 import { useState } from 'react'
 import {cambiarColor} from '../api/Sala'
 import Swal from 'sweetalert2'
+import Exit from '@/components/icons/Exit'
 
 export default function Sala() {
     
@@ -103,7 +104,7 @@ export default function Sala() {
         <div>
           <center>
               <font color="white" size="4">
-                <button onClick={()=>Router.push('/')} className={styles.btnExit}>Salir</button>
+                <p>Esperando jugadores... <button onClick={()=>Router.push('/')} className={styles.btnExit}><Exit/> S A L I R</button></p>
               </font>
           </center>
         </div>
