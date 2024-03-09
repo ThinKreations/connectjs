@@ -145,12 +145,16 @@
   
 }
 @media screen and (max-width: 600px) {
-
+  .logo, .logo2{
+    width: 50vw;
+    height: 15vw;
+    
+  }
   .tablero{
     background-color: rgb(43, 85, 124);
     border-radius: 10px;
     box-shadow: 0px 0px 5px rgb(100,100,100);
-    border-spacing: 3px;
+    border-spacing: 4px;
   }
   .tablero td{
     width: 9vw;
