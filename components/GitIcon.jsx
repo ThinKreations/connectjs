@@ -4,8 +4,8 @@ const GitIcon = () => (
       className="octicon octicon-mark-github"
       viewBox="0 0 16 16"
       version="1.1"
-      width="32"
-      height="32"
+      width="64"
+      height="64"
       color="white"
       aria-hidden="true"
     >

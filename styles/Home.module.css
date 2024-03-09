@@ -58,9 +58,7 @@
 }
 
 .header{
-  background-color: rgba(77, 44, 44, 0.8);
-  box-shadow: 0px 0px 10px rgb(50,50,50);
-  margin-bottom: 18vh;
+  margin-bottom: 10vh;
 }
 
 /* Items */
@@ -81,7 +79,7 @@
 
 .btnEntrar{
   font-family: Quicksand;
-  font-size: 8vw;
+  font-size: 6vw;
   padding: 25px;
   outline: none;
   border: 1px solid transparent;
@@ -89,7 +87,7 @@
   background-color: rgba(77, 44, 44, 0.5);
   color: white;
   transition: 0s ease-in-out;
-  margin-bottom: 7vh;
+  margin-bottom: 15vh;
 }
 .btnEntrar:hover{
   background-color: rgba(255,255,255, 0.5);
@@ -157,11 +155,11 @@
     background-color: rgb(43, 85, 124);
     border-radius: 10px;
     box-shadow: 0px 0px 5px rgb(100,100,100);
-    border-spacing: 6px;
+    border-spacing: 5px;
   }
   .tablero td{
-    width: 9vw;
-    height: 9vw;
+    width: 10vw;
+    height: 10vw;
   }
   .btnExit{
     margin-top: 10vw;
@@ -171,6 +169,7 @@
   }
   .btnEntrar{
     font-size: 12vw;
-    margin-bottom: 40vh;
+    margin-bottom: 25vh;
+    margin-top: 15vh;
   }
 }
