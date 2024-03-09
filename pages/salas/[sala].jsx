@@ -5,8 +5,18 @@ import logo from "../../src/logo.png"
 import Router, { useRouter } from 'next/router'
 import { useState } from 'react'
 import {cambiarColor} from '../api/Sala'
+import Swal from 'sweetalert2'
 
 export default function Sala() {
+    
+    Swal.fire({
+        title: 'Bienvenido',
+        text: '¡Completa una línea de 4 para ganar!',
+        icon: 'success',
+        showCloseButton: false,
+        showConfirmButton: false,
+        timer: 1500
+    })
     
     return (
     <div>

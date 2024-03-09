@@ -89,7 +89,7 @@
   background-color: rgba(77, 44, 44, 0.5);
   color: white;
   transition: 0s ease-in-out;
-  margin-bottom: 8vh;
+  margin-bottom: 7vh;
 }
 .btnEntrar:hover{
   background-color: rgba(255,255,255, 0.5);
@@ -165,5 +165,9 @@
     font-size: 18px;
     padding-left: 25vw;
   padding-right: 25vw;
+  }
+  .btnEntrar{
+    font-size: 12vw;
+    margin-bottom: 50vh;
   }
 }
