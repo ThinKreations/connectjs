@@ -86,16 +86,20 @@
   outline: none;
   border: 1px solid transparent;
   border-radius: 10px;
-  background-color: rgba(77, 44, 44, 0.6);
+  background-color: rgba(77, 44, 44, 0.5);
   color: white;
-  box-shadow: 0px 0px 10px rgb(77, 44, 44);
-  transition: 0.1s ease-in-out;
+  transition: 0s ease-in-out;
   margin-bottom: 8vh;
 }
 .btnEntrar:hover{
+  background-color: rgba(255,255,255, 0.5);
+  color: var(--fondo-oscuro);
+}
+.btnEntrar:active{
   background-color: rgba(255,255,255, 0.8);
   color: var(--fondo-oscuro);
   box-shadow: 0px 0px 10px rgb(255,255,255);
+  
 }
 
 .tablero{
@@ -126,12 +130,20 @@
   outline: none;
   border: 1px solid transparent;
   border-radius: 10px;
-  background-color: rgba(77, 44, 44, 0.6);
+  background-color: rgba(77, 44, 44, 0.5);
   color: white;
-  box-shadow: 0px 0px 10px rgb(77, 44, 44);
   transition: 0.1s ease-in-out;
 }
-
+.btnExit:hover{
+  background-color: rgba(255,255,255, 0.5);
+  color: var(--fondo-oscuro);
+}
+.btnExit:active{
+  background-color: rgba(255,255,255, 0.8);
+  color: var(--fondo-oscuro);
+  box-shadow: 0px 0px 10px rgb(255,255,255);
+  
+}
 @media screen and (max-width: 600px) {
 
   .tablero{
