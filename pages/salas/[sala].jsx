@@ -4,11 +4,11 @@ import styles from "../../styles/Home.module.css"
 import logo from "../../src/logo.png"
 import Router, { useRouter } from 'next/router'
 import { useState } from 'react'
-
+import {cambiarColor} from '../api/Sala'
 
 export default function Sala() {
-
-  return (
+    
+    return (
     <div>
       <MainHead titulo={'Id de sala'}/>
       <div className={styles.container} id="inicio">
@@ -19,14 +19,14 @@ export default function Sala() {
         <center>
           <table className={styles.tablero}>
             <tr>
-              <td onClick={()=>console.log("A")} id='btn6A'></td>
-              <td onClick={()=>console.log("B")} id='btn6B'></td>
-              <td onClick={()=>console.log("C")} id='btn6C'></td>
-              <td onClick={()=>console.log("D")} id='btn6D'></td>
-              <td onClick={()=>console.log("E")} id='btn6E'></td>
-              <td onClick={()=>console.log("F")} id='btn6F'></td>
-              <td onClick={()=>console.log("G")} id='btn6G'></td>
-              <td onClick={()=>console.log("H")} id='btn6H'></td>
+              <td onClick={cambiarColor('A')}></td>
+              <td onClick={cambiarColor('B')}></td>
+              <td onClick={cambiarColor('C')}></td>
+              <td onClick={cambiarColor('D')}></td>
+              <td onClick={cambiarColor('E')}></td>
+              <td onClick={cambiarColor('F')}></td>
+              <td onClick={cambiarColor('G')}></td>
+              <td onClick={cambiarColor('H')}></td>
             </tr>
             <tr>
               <td onClick={()=>console.log("A")} id='btn5A'></td>

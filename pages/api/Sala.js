@@ -1,4 +1,5 @@
-function cambiarColor(IdElemento) {
-    var elemento = document.getElementById(IdElemento)
+export function cambiarColor(IdElemento) {
+    let elemento = IdElemento
     elemento.style.backgroundColor = "green"
 }
+
