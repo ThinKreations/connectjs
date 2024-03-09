@@ -154,7 +154,7 @@
     background-color: rgb(43, 85, 124);
     border-radius: 10px;
     box-shadow: 0px 0px 5px rgb(100,100,100);
-    border-spacing: 4px;
+    border-spacing: 6px;
   }
   .tablero td{
     width: 9vw;
