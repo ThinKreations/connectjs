@@ -130,7 +130,6 @@
   border-radius: 10px;
   background-color: rgba(77, 44, 44, 0.5);
   color: white;
-  transition: 0.1s ease-in-out;
 }
 .btnExit:hover{
   background-color: rgba(255,255,255, 0.5);
@@ -149,8 +148,8 @@
     
   }
   .tablero{
-    margin-top: 15vw;
-    margin-bottom: 15vw;
+    margin-top: 25vw;
+    margin-bottom: 25vw;
 
     background-color: rgb(43, 85, 124);
     border-radius: 10px;
