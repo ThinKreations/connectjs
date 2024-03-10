@@ -7,27 +7,35 @@ import { useState, useEffect } from 'react'
 import {cambiarColor} from '../api/Sala'
 import Swal from 'sweetalert2'
 import Exit from '@/components/icons/Exit'
-import io from 'socket.io-client';
-const socket = io.connect('http://localhost:3000');
 
 export default function Sala() {
     const [esperandoJugadores, setEsperandoJugadores] = useState(true);
+    const [espaciosOcupados, setEspaciosOcupados] = useState({ A: 0, B: 0, C: 0, D: 0, E: 0, F: 0, G: 0});
+    //const [tablero, setTablero] = useState(Array(7).fill(Array(8).fill(null)));
+    /*
     useEffect(() => {
         socket.on('jugadorConectado', () => {
             console.log('Otro jugador se ha conectado');
-            setEsperandoJugadores(false);
-            
+            setEsperandoJugadores(TRUE);
+            Swal.fire({
+                title: 'Bienvenido',
+                text: '¡Completa una línea de 4 para ganar!',
+                icon: 'success',
+                showCloseButton: false,
+                showConfirmButton: false,
+                timer: 1500
+            })
         });
     }, []);
+
+    useEffect(() => {
+        socket.on('actualizarEspaciosOcupados', ({ columna, espaciosOcupados }) => {
+            // Aquí actualizas el estado de los espacios ocupados en la columna recibida
+            setEspaciosOcupados(espaciosOcupados);
+        });
+    }, []);
+    */
     
-    Swal.fire({
-        title: 'Bienvenido',
-        text: '¡Completa una línea de 4 para ganar!',
-        icon: 'success',
-        showCloseButton: false,
-        showConfirmButton: false,
-        timer: 1500
-    })
 
     return (
     <div>
@@ -40,74 +48,58 @@ export default function Sala() {
         <center>
           <table className={styles.tablero}>
             <tr>
-              <td onClick={cambiarColor('A')}></td>
-              <td onClick={cambiarColor('B')}></td>
-              <td onClick={cambiarColor('C')}></td>
-              <td onClick={cambiarColor('D')}></td>
-              <td onClick={cambiarColor('E')}></td>
-              <td onClick={cambiarColor('F')}></td>
-              <td onClick={cambiarColor('G')}></td>
-              <td onClick={cambiarColor('H')}></td>
+              <td onClick={()=>cambiarColor('A', 7, espaciosOcupados, setEspaciosOcupados)} id='A6'></td>
+              <td onClick={()=>cambiarColor('B', 7, espaciosOcupados, setEspaciosOcupados)} id='B6'></td>
+              <td onClick={()=>cambiarColor('C', 7, espaciosOcupados, setEspaciosOcupados)} id='C6'></td>
+              <td onClick={()=>cambiarColor('D', 7, espaciosOcupados, setEspaciosOcupados)} id='D6'></td>
+              <td onClick={()=>cambiarColor('E', 7, espaciosOcupados, setEspaciosOcupados)} id='E6'></td>
+              <td onClick={()=>cambiarColor('F', 7, espaciosOcupados, setEspaciosOcupados)} id='F6'></td>
+              <td onClick={()=>cambiarColor('G', 7, espaciosOcupados, setEspaciosOcupados)} id='G6'></td>
             </tr>
             <tr>
-              <td onClick={()=>console.log("A")} id='btn5A'></td>
-              <td onClick={()=>console.log("B")} id='btn5B'></td>
-              <td onClick={()=>console.log("C")} id='btn5C'></td>
-              <td onClick={()=>console.log("D")} id='btn5D'></td>
-              <td onClick={()=>console.log("E")} id='btn5E'></td>
-              <td onClick={()=>console.log("F")} id='btn5F'></td>
-              <td onClick={()=>console.log("G")} id='btn5G'></td>
-              <td onClick={()=>console.log("H")} id='btn5H'></td>
+              <td onClick={()=>cambiarColor('A', 7, espaciosOcupados, setEspaciosOcupados)} id='A5'></td>
+              <td onClick={()=>cambiarColor('B', 7, espaciosOcupados, setEspaciosOcupados)} id='B5'></td>
+              <td onClick={()=>cambiarColor('C', 7, espaciosOcupados, setEspaciosOcupados)} id='C5'></td>
+              <td onClick={()=>cambiarColor('D', 7, espaciosOcupados, setEspaciosOcupados)} id='D5'></td>
+              <td onClick={()=>cambiarColor('E', 7, espaciosOcupados, setEspaciosOcupados)} id='E5'></td>
+              <td onClick={()=>cambiarColor('F', 7, espaciosOcupados, setEspaciosOcupados)} id='F5'></td>
+              <td onClick={()=>cambiarColor('G', 7, espaciosOcupados, setEspaciosOcupados)} id='G5'></td>
             </tr>
             <tr>
-              <td onClick={()=>console.log("A")} id='btn4A'></td>
-              <td onClick={()=>console.log("B")} id='btn4B'></td>
-              <td onClick={()=>console.log("C")} id='btn4C'></td>
-              <td onClick={()=>console.log("D")} id='btn4D'></td>
-              <td onClick={()=>console.log("E")} id='btn4E'></td>
-              <td onClick={()=>console.log("F")} id='btn4F'></td>
-              <td onClick={()=>console.log("G")} id='btn4G'></td>
-              <td onClick={()=>console.log("H")} id='btn4H'></td>
+              <td onClick={()=>cambiarColor('A', 7, espaciosOcupados, setEspaciosOcupados)} id='A4'></td>
+              <td onClick={()=>cambiarColor('B', 7, espaciosOcupados, setEspaciosOcupados)} id='B4'></td>
+              <td onClick={()=>cambiarColor('C', 7, espaciosOcupados, setEspaciosOcupados)} id='C4'></td>
+              <td onClick={()=>cambiarColor('D', 7, espaciosOcupados, setEspaciosOcupados)} id='D4'></td>
+              <td onClick={()=>cambiarColor('E', 7, espaciosOcupados, setEspaciosOcupados)} id='E4'></td>
+              <td onClick={()=>cambiarColor('F', 7, espaciosOcupados, setEspaciosOcupados)} id='F4'></td>
+              <td onClick={()=>cambiarColor('G', 7, espaciosOcupados, setEspaciosOcupados)} id='G4'></td>
             </tr>
             <tr>
-              <td onClick={()=>console.log("A")} id='btn3A'></td>
-              <td onClick={()=>console.log("B")} id='btn3B'></td>
-              <td onClick={()=>console.log("C")} id='btn3C'></td>
-              <td onClick={()=>console.log("D")} id='btn3D'></td>
-              <td onClick={()=>console.log("E")} id='btn3E'></td>
-              <td onClick={()=>console.log("F")} id='btn3F'></td>
-              <td onClick={()=>console.log("G")} id='btn3G'></td>
-              <td onClick={()=>console.log("H")} id='btn3H'></td>
+              <td onClick={()=>cambiarColor('A', 7, espaciosOcupados, setEspaciosOcupados)} id='A3'></td>
+              <td onClick={()=>cambiarColor('B', 7, espaciosOcupados, setEspaciosOcupados)} id='B3'></td>
+              <td onClick={()=>cambiarColor('C', 7, espaciosOcupados, setEspaciosOcupados)} id='C3'></td>
+              <td onClick={()=>cambiarColor('D', 7, espaciosOcupados, setEspaciosOcupados)} id='D3'></td>
+              <td onClick={()=>cambiarColor('E', 7, espaciosOcupados, setEspaciosOcupados)} id='E3'></td>
+              <td onClick={()=>cambiarColor('F', 7, espaciosOcupados, setEspaciosOcupados)} id='F3'></td>
+              <td onClick={()=>cambiarColor('G', 7, espaciosOcupados, setEspaciosOcupados)} id='G3'></td>
             </tr>
             <tr>
-              <td onClick={()=>console.log("A")} id='btn2A'></td>
-              <td onClick={()=>console.log("B")} id='btn2B'></td>
-              <td onClick={()=>console.log("C")} id='btn2C'></td>
-              <td onClick={()=>console.log("D")} id='btn2D'></td>
-              <td onClick={()=>console.log("E")} id='btn2E'></td>
-              <td onClick={()=>console.log("F")} id='btn2F'></td>
-              <td onClick={()=>console.log("G")} id='btn2G'></td>
-              <td onClick={()=>console.log("H")} id='btn2H'></td>
+              <td onClick={()=>cambiarColor('A', 7, espaciosOcupados, setEspaciosOcupados)} id='A2'></td>
+              <td onClick={()=>cambiarColor('B', 7, espaciosOcupados, setEspaciosOcupados)} id='B2'></td>
+              <td onClick={()=>cambiarColor('C', 7, espaciosOcupados, setEspaciosOcupados)} id='C2'></td>
+              <td onClick={()=>cambiarColor('D', 7, espaciosOcupados, setEspaciosOcupados)} id='D2'></td>
+              <td onClick={()=>cambiarColor('E', 7, espaciosOcupados, setEspaciosOcupados)} id='E2'></td>
+              <td onClick={()=>cambiarColor('F', 7, espaciosOcupados, setEspaciosOcupados)} id='F2'></td>
+              <td onClick={()=>cambiarColor('G', 7, espaciosOcupados, setEspaciosOcupados)} id='G2'></td>
             </tr>
             <tr>
-              <td onClick={()=>console.log("A")} id='btn1A'></td>
-              <td onClick={()=>console.log("B")} id='btn1B'></td>
-              <td onClick={()=>console.log("C")} id='btn1C'></td>
-              <td onClick={()=>console.log("D")} id='btn1D'></td>
-              <td onClick={()=>console.log("E")} id='btn1E'></td>
-              <td onClick={()=>console.log("F")} id='btn1F'></td>
-              <td onClick={()=>console.log("G")} id='btn1G'></td>
-              <td onClick={()=>console.log("H")} id='btn1H'></td>
-            </tr>
-            <tr>
-              <td onClick={()=>console.log("A")} id='btn0A'></td>
-              <td onClick={()=>console.log("B")} id='btn0B'></td>
-              <td onClick={()=>console.log("C")} id='btn0C'></td>
-              <td onClick={()=>console.log("D")} id='btn0D'></td>
-              <td onClick={()=>console.log("E")} id='btn0E'></td>
-              <td onClick={()=>console.log("F")} id='btn0F'></td>
-              <td onClick={()=>console.log("G")} id='btn0G'></td>
-              <td onClick={()=>console.log("H")} id='btn0H'></td>
+              <td onClick={()=>cambiarColor('A', 7, espaciosOcupados, setEspaciosOcupados)} id='A1'></td>
+              <td onClick={()=>cambiarColor('B', 7, espaciosOcupados, setEspaciosOcupados)} id='B1'></td>
+              <td onClick={()=>cambiarColor('C', 7, espaciosOcupados, setEspaciosOcupados)} id='C1'></td>
+              <td onClick={()=>cambiarColor('D', 7, espaciosOcupados, setEspaciosOcupados)} id='D1'></td>
+              <td onClick={()=>cambiarColor('E', 7, espaciosOcupados, setEspaciosOcupados)} id='E1'></td>
+              <td onClick={()=>cambiarColor('F', 7, espaciosOcupados, setEspaciosOcupados)} id='F1'></td>
+              <td onClick={()=>cambiarColor('G', 7, espaciosOcupados, setEspaciosOcupados)} id='G1'></td>
             </tr>
           </table>
         </center>
@@ -127,7 +119,6 @@ export default function Sala() {
         </div>
         </center>
 
-        
       </div>
     </div>
   )

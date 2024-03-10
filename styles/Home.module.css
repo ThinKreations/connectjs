@@ -113,17 +113,17 @@
   background-attachment: fixed;
   background-image: linear-gradient(to bottom, rgba(94, 60, 46, 0.5) 0%, rgba(94, 60, 46, 0.5) 100%), url(../src/bg.jpg);
   background-position: center;
-  width: 1.5cm;
-  height: 1.5cm;
+  width: 1.8cm;
+  height: 1.8cm;
 }
 .tablero td:hover{
   background-image: linear-gradient(to bottom, rgba(204, 148, 124, 0.5) 0%,rgba(204, 148, 124, 0.5) 100%), url(../src/bg.jpg);
 }
 
 .btnExit{
-  margin-top: 2vw;
+  margin-top: 1vw;
   font-family: Quicksand;
-  font-size: 2vw;
+  font-size: 2.5vw;
   padding-left: 5vw;
   padding-right: 5vw;
   outline: none;
@@ -155,11 +155,11 @@
     background-color: rgb(43, 85, 124);
     border-radius: 10px;
     box-shadow: 0px 0px 5px rgb(100,100,100);
-    border-spacing: 5px;
+    border-spacing: 6px;
   }
   .tablero td{
-    width: 10vw;
-    height: 10vw;
+    width: 11vw;
+    height: 11vw;
   }
   .btnExit{
     margin-top: 10vw;

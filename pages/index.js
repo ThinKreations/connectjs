@@ -6,6 +6,8 @@ import Router, { useRouter } from 'next/router'
 //import { createUser, setNombre } from './api/user'*/
 import GitIcon from '@/components/icons/GitIcon'
 
+
+
 export default function Home() {
   const router = useRouter()
   const onSubmit = (event) => {
