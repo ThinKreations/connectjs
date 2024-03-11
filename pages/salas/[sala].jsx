@@ -4,9 +4,11 @@ import styles from "../../styles/Home.module.css"
 import logo from "../../src/logo.png"
 import Router, { useRouter } from 'next/router'
 import { useState, useEffect } from 'react'
-import {cambiarColor, exportarFichas} from '../api/Sala'
+//import {cambiarColor, exportarFichas} from '../api/Sala'
 import Swal from 'sweetalert2'
 import Exit from '@/components/icons/Exit'
+import rojo from  '../../src/rojo.png'
+
 Swal.fire({
   title: 'Bienvenido',
   text: '¡Completa una línea de 4 para ganar!',
@@ -16,63 +18,147 @@ Swal.fire({
   timer: 1500
 })
 let i = 1, j, k, l;
-let turno, nextTurno='rojo', next='red'
-let consecutivas = 1 
+let turn, turno, nextTurno='rojo', next='red'
 
-export default function Sala() {
-
+let ColNum
+let WIN = 0
+let Tabla = [
+  [0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0]
+]
+let consecutivas=0
+export default function Sala(){
+  
   const [espaciosOcupados, setEspaciosOcupados] = useState({ A: 0, B: 0, C: 0, D: 0, E: 0, F: 0, G: 0})
-  //const [turn, setTurn] = useState(0, 1, 2)
-
+  
+  //let [Tabla, setTabla] = useState(Array.from({ length: 6 }, () => Array(7).fill(null)));
+  //console.log(Tabla)
   
   let full = 0
-  const handleTd=(columna)=>{
+  const handleTd=(columna, espaciosOcupados, setEspaciosOcupados)=>{
     
-    cambiarColor(columna, espaciosOcupados, setEspaciosOcupados)
-    let tablero = espaciosOcupados;
+    //cambiarColor(columna, espaciosOcupados, setEspaciosOcupados)
+    //let tablero = espaciosOcupados;
     if (espaciosOcupados[columna]>=6){
-      console.log("Columna ", columna, " llena.")
+      //console.log("Columna ", columna, " llena.")
       return;
     }
     const nuevoEspaciosOcupados = {...espaciosOcupados};
     nuevoEspaciosOcupados[columna]++;
+
+    setEspaciosOcupados(prevEspaciosOcupados=>({
+      ...prevEspaciosOcupados,
+      [columna]: prevEspaciosOcupados[columna]+1
+    }));
+    
     if(i==1){
-      turno='red'
+      turno='rojo'
+      turn='red'
       nextTurno='amarillo'
       next='yellow'
       i++
-      console.log(i-1, i)
     }else{
-      turno='yellow'
+      turn='yellow'
+      turno='amarillo'
       nextTurno='rojo'
       next='red'
       i--
-      console.log(i+1, i)
     }
-    if(turno===undefined){
+    if(turn===undefined){
       nextTurno='rojo'
       next='red'
     }
+
+    switch(columna)
+    {
+      case 'A':
+        ColNum = 0
+        break
+      case 'B':
+        ColNum = 1
+        break
+      case 'C':
+        ColNum = 2
+        break
+      case 'D':
+        ColNum = 3
+        break
+      case 'E':
+        ColNum = 4
+        break
+      case 'F':
+        ColNum = 5
+        break
+      case 'G':
+        ColNum = 6
+        break
+    }
+    
+    //console.log(ColNum) 
+    //console.log(ColNum,nuevoEspaciosOcupados[columna])
     //console.log(nuevoEspaciosOcupados, )
     let id = columna+nuevoEspaciosOcupados[columna]
     let elemento = document.getElementById(id)
-    console.log(elemento, turno)
-    if(turno==='red'){
+    //console.log(elemento, turno)
+    if(turn==='red'){
       elemento.classList.remove(...elemento.classList)
       elemento.classList.add('Home_red__q71R_')
+      //setTabla[ColNum,nuevoEspaciosOcupados[columna]]=1
+      Tabla[ColNum][nuevoEspaciosOcupados[columna]-1] = 1
     }else{
       elemento.classList.remove(...elemento.classList)
       elemento.classList.add('Home_yellow__i9sK5')
-    }  
-    //TIE
-    /*
-    if(nuevoEspaciosOcupados[0]===5&nuevoEspaciosOcupados[1]===5&nuevoEspaciosOcupados[2]===5&nuevoEspaciosOcupados[3]===5&nuevoEspaciosOcupados[4]===5&nuevoEspaciosOcupados[5]===5&nuevoEspaciosOcupados[6]===5){
-      full = 1
+      //setTabla[ColNum,nuevoEspaciosOcupados[columna]]=2
+      Tabla[ColNum][nuevoEspaciosOcupados[columna]-1] = 2
     }
-    */
-  }
+    //WIN = `Ganó el`
+    //console.log(ColNum,nuevoEspaciosOcupados[columna])
+    //console.log(Tabla[nuevoEspaciosOcupados[columna], ColNum])
+    //console.log(Tabla)
+    
+    //console.log(Valor)
+      //BOTTOM
+      let Valor = Tabla[ColNum][espaciosOcupados[columna]]
+      let Valor2 = Tabla[ColNum][espaciosOcupados[columna]-1]
+      let Valor3 = Tabla[ColNum][espaciosOcupados[columna]-2]
+      let Valor4 = Tabla[ColNum][espaciosOcupados[columna]-3]
+      let ValorM2
+      let ValorM3
+      if(Valor==Valor2&&Valor2==Valor3&&Valor3==Valor4){
+        consecutivas=4
+        //console.log(Valor, Valor2, Valor3, Valor4)
+      }
+      
+      /*
+      //LEFT
+      Valor = Tabla[ColNum][espaciosOcupados[columna]]
+      ColNum==0?(''):Valor2 = Tabla[ColNum-1][espaciosOcupados[columna]]
+      ColNum==0||ColNum==1?(' '):Valor3 = Tabla[ColNum-2][espaciosOcupados[columna]]
+      ColNum==0||ColNum==1||ColNum==2?(' '):Valor4 = Tabla[ColNum-3][espaciosOcupados[columna]]
+      ColNum==6?(''):ValorM2 = Tabla[ColNum+1][espaciosOcupados[columna]]
+      ColNum==6||ColNum==5?(''):ValorM3 = Tabla[ColNum+2][espaciosOcupados[columna]]
 
-  
+      if(Valor==Valor2&&Valor2==Valor3&&Valor3==Valor4||Valor==ValorM2&&ValorM2==Valor3){
+        consecutivas=4
+        console.log(Valor, Valor2, Valor3, Valor4)
+      }
+      */
+      
+      if(consecutivas==4){
+        console.log("Ganaste")
+        Swal.fire({
+          title: `Ganó el ${turno}`,
+          showCloseButton: false,
+          showConfirmButton: false,
+          timer: 1500,
+        })  
+      }
+    }
 
   return (
     <div>
@@ -85,59 +171,60 @@ export default function Sala() {
         <center>
           <table className={styles.tablero}>
             <tr>
-              <td onClick={()=>handleTd('A')} ><button id='A6' className={styles.default}></button></td>
-              <td onClick={()=>handleTd('B')} ><button id='B6' className={styles.default}></button></td>
-              <td onClick={()=>handleTd('C')} ><button id='C6' className={styles.default}></button></td>
-              <td onClick={()=>handleTd('D')} ><button id='D6' className={styles.default}></button></td>
-              <td onClick={()=>handleTd('E')} ><button id='E6' className={styles.default}></button></td>
-              <td onClick={()=>handleTd('F')} ><button id='F6' className={styles.default}></button></td>
-              <td onClick={()=>handleTd('G')} ><button id='G6' className={styles.default}></button></td>
+              <td onClick={()=>handleTd('A', espaciosOcupados, setEspaciosOcupados)} ><button id='A6' className={styles.default}></button></td>
+              <td onClick={()=>handleTd('B', espaciosOcupados, setEspaciosOcupados)} ><button id='B6' className={styles.default}></button></td>
+              <td onClick={()=>handleTd('C', espaciosOcupados, setEspaciosOcupados)} ><button id='C6' className={styles.default}></button></td>
+              <td onClick={()=>handleTd('D', espaciosOcupados, setEspaciosOcupados)} ><button id='D6' className={styles.default}></button></td>
+              <td onClick={()=>handleTd('E', espaciosOcupados, setEspaciosOcupados)} ><button id='E6' className={styles.default}></button></td>
+              <td onClick={()=>handleTd('F', espaciosOcupados, setEspaciosOcupados)} ><button id='F6' className={styles.default}></button></td>
+              <td onClick={()=>handleTd('G', espaciosOcupados, setEspaciosOcupados)} ><button id='G6' className={styles.default}></button></td>
             </tr>
             <tr>
-              <td onClick={()=>handleTd('A')} ><button id='A5' className={styles.default}></button></td>
-              <td onClick={()=>handleTd('B')} ><button id='B5' className={styles.default}></button></td>
-              <td onClick={()=>handleTd('C')} ><button id='C5' className={styles.default}></button></td>
-              <td onClick={()=>handleTd('D')} ><button id='D5' className={styles.default}></button></td>
-              <td onClick={()=>handleTd('E')} ><button id='E5' className={styles.default}></button></td>
-              <td onClick={()=>handleTd('F')} ><button id='F5' className={styles.default}></button></td>
-              <td onClick={()=>handleTd('G')} ><button id='G5' className={styles.default}></button></td>
+              <td onClick={()=>handleTd('A', espaciosOcupados, setEspaciosOcupados)} ><button id='A5' className={styles.default}></button></td>
+              <td onClick={()=>handleTd('B', espaciosOcupados, setEspaciosOcupados)} ><button id='B5' className={styles.default}></button></td>
+              <td onClick={()=>handleTd('C', espaciosOcupados, setEspaciosOcupados)} ><button id='C5' className={styles.default}></button></td>
+              <td onClick={()=>handleTd('D', espaciosOcupados, setEspaciosOcupados)} ><button id='D5' className={styles.default}></button></td>
+              <td onClick={()=>handleTd('E', espaciosOcupados, setEspaciosOcupados)} ><button id='E5' className={styles.default}></button></td>
+              <td onClick={()=>handleTd('F', espaciosOcupados, setEspaciosOcupados)} ><button id='F5' className={styles.default}></button></td>
+              <td onClick={()=>handleTd('G', espaciosOcupados, setEspaciosOcupados)} ><button id='G5' className={styles.default}></button></td>
             </tr>
             <tr>
-              <td onClick={()=>handleTd('A')} ><button id='A4' className={styles.default}></button></td>
-              <td onClick={()=>handleTd('B')} ><button id='B4' className={styles.default}></button></td>
-              <td onClick={()=>handleTd('C')} ><button id='C4' className={styles.default}></button></td>
-              <td onClick={()=>handleTd('D')} ><button id='D4' className={styles.default}></button></td>
-              <td onClick={()=>handleTd('E')} ><button id='E4' className={styles.default}></button></td>
-              <td onClick={()=>handleTd('F')} ><button id='F4' className={styles.default}></button></td>
-              <td onClick={()=>handleTd('G')} ><button id='G4' className={styles.default}></button></td>
+              <td onClick={()=>handleTd('A', espaciosOcupados, setEspaciosOcupados)} ><button id='A4' className={styles.default}></button></td>
+              <td onClick={()=>handleTd('B', espaciosOcupados, setEspaciosOcupados)} ><button id='B4' className={styles.default}></button></td>
+              <td onClick={()=>handleTd('C', espaciosOcupados, setEspaciosOcupados)} ><button id='C4' className={styles.default}></button></td>
+              <td onClick={()=>handleTd('D', espaciosOcupados, setEspaciosOcupados)} ><button id='D4' className={styles.default}></button></td>
+              <td onClick={()=>handleTd('E', espaciosOcupados, setEspaciosOcupados)} ><button id='E4' className={styles.default}></button></td>
+              <td onClick={()=>handleTd('F', espaciosOcupados, setEspaciosOcupados)} ><button id='F4' className={styles.default}></button></td>
+              <td onClick={()=>handleTd('G', espaciosOcupados, setEspaciosOcupados)} ><button id='G4' className={styles.default}></button></td>
             </tr>
             <tr>
-              <td onClick={()=>handleTd('A')} ><button id='A3' className={styles.default}></button></td>
-              <td onClick={()=>handleTd('B')} ><button id='B3' className={styles.default}></button></td>
-              <td onClick={()=>handleTd('C')} ><button id='C3' className={styles.default}></button></td>
-              <td onClick={()=>handleTd('D')} ><button id='D3' className={styles.default}></button></td>
-              <td onClick={()=>handleTd('E')} ><button id='E3' className={styles.default}></button></td>
-              <td onClick={()=>handleTd('F')} ><button id='F3' className={styles.default}></button></td>
-              <td onClick={()=>handleTd('G')} ><button id='G3' className={styles.default}></button></td>
+              <td onClick={()=>handleTd('A', espaciosOcupados, setEspaciosOcupados)} ><button id='A3' className={styles.default}></button></td>
+              <td onClick={()=>handleTd('B', espaciosOcupados, setEspaciosOcupados)} ><button id='B3' className={styles.default}></button></td>
+              <td onClick={()=>handleTd('C', espaciosOcupados, setEspaciosOcupados)} ><button id='C3' className={styles.default}></button></td>
+              <td onClick={()=>handleTd('D', espaciosOcupados, setEspaciosOcupados)} ><button id='D3' className={styles.default}></button></td>
+              <td onClick={()=>handleTd('E', espaciosOcupados, setEspaciosOcupados)} ><button id='E3' className={styles.default}></button></td>
+              <td onClick={()=>handleTd('F', espaciosOcupados, setEspaciosOcupados)} ><button id='F3' className={styles.default}></button></td>
+              <td onClick={()=>handleTd('G', espaciosOcupados, setEspaciosOcupados)} ><button id='G3' className={styles.default}></button></td>
             </tr>
             <tr>
-              <td onClick={()=>handleTd('A')} ><button id='A2' className={styles.default}></button></td>
-              <td onClick={()=>handleTd('B')} ><button id='B2' className={styles.default}></button></td>
-              <td onClick={()=>handleTd('C')} ><button id='C2' className={styles.default}></button></td>
-              <td onClick={()=>handleTd('D')} ><button id='D2' className={styles.default}></button></td>
-              <td onClick={()=>handleTd('E')} ><button id='E2' className={styles.default}></button></td>
-              <td onClick={()=>handleTd('F')} ><button id='F2' className={styles.default}></button></td>
-              <td onClick={()=>handleTd('G')} ><button id='G2' className={styles.default}></button></td>
+              <td onClick={()=>handleTd('A', espaciosOcupados, setEspaciosOcupados)} ><button id='A2' className={styles.default}></button></td>
+              <td onClick={()=>handleTd('B', espaciosOcupados, setEspaciosOcupados)} ><button id='B2' className={styles.default}></button></td>
+              <td onClick={()=>handleTd('C', espaciosOcupados, setEspaciosOcupados)} ><button id='C2' className={styles.default}></button></td>
+              <td onClick={()=>handleTd('D', espaciosOcupados, setEspaciosOcupados)} ><button id='D2' className={styles.default}></button></td>
+              <td onClick={()=>handleTd('E', espaciosOcupados, setEspaciosOcupados)} ><button id='E2' className={styles.default}></button></td>
+              <td onClick={()=>handleTd('F', espaciosOcupados, setEspaciosOcupados)} ><button id='F2' className={styles.default}></button></td>
+              <td onClick={()=>handleTd('G', espaciosOcupados, setEspaciosOcupados)} ><button id='G2' className={styles.default}></button></td>
             </tr>
             <tr>
-              <td onClick={()=>handleTd('A')} ><button id='A1' className={styles.default}></button></td>
-              <td onClick={()=>handleTd('B')} ><button id='B1' className={styles.default}></button></td>
-              <td onClick={()=>handleTd('C')} ><button id='C1' className={styles.default}></button></td>
-              <td onClick={()=>handleTd('D')} ><button id='D1' className={styles.default}></button></td>
-              <td onClick={()=>handleTd('E')} ><button id='E1' className={styles.default}></button></td>
-              <td onClick={()=>handleTd('F')} ><button id='F1' className={styles.default}></button></td>
-              <td onClick={()=>handleTd('G')} ><button id='G1' className={styles.default}></button></td>
+              <td onClick={()=>handleTd('A', espaciosOcupados, setEspaciosOcupados)} ><button id='A1' className={styles.default}></button></td>
+              <td onClick={()=>handleTd('B', espaciosOcupados, setEspaciosOcupados)} ><button id='B1' className={styles.default}></button></td>
+              <td onClick={()=>handleTd('C', espaciosOcupados, setEspaciosOcupados)} ><button id='C1' className={styles.default}></button></td>
+              <td onClick={()=>handleTd('D', espaciosOcupados, setEspaciosOcupados)} ><button id='D1' className={styles.default}></button></td>
+              <td onClick={()=>handleTd('E', espaciosOcupados, setEspaciosOcupados)} ><button id='E1' className={styles.default}></button></td>
+              <td onClick={()=>handleTd('F', espaciosOcupados, setEspaciosOcupados)} ><button id='F1' className={styles.default}></button></td>
+              <td onClick={()=>handleTd('G', espaciosOcupados, setEspaciosOcupados)} ><button id='G1' className={styles.default}></button></td>
             </tr>
+            
           </table>
         </center>
         <div>

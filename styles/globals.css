@@ -5,7 +5,7 @@
 html, body{
   --fondo-oscuro: rgb(77, 60, 44);
   --cafe-rojizo: rgb(77, 44, 44);
-  background-image: linear-gradient(to bottom, rgba(94, 60, 46, 0.5) 0%, rgba(94, 60, 46, 0.5) 100%), url(../src/bg.jpg);
+  background-image: linear-gradient(to bottom, rgba(94, 60, 46, 0.4) 0%, rgba(94, 60, 46, 0.4) 100%), url(../src/bg.jpg);
   background-size: cover;
     background-attachment: fixed;
     background-position: center;

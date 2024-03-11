@@ -30,9 +30,7 @@ export default function Home() {
             <p style={{textShadow:'0px 0px 5px rgb(80,80,80)'}}>{``}</p>
           </font>
             <button type='submit' onClick={()=>{Router.push('/salas/13579')}} className={styles.btnEntrar}>J U G A R</button>
-          <div> 
-          <a href="https://github.com/ThinKreations/connectjs" target='_blank'><GitIcon style={{color:'white'}}/></a>
-          </div>
+          
         </center>
       </div>
     </div>
