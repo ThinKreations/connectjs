@@ -88,9 +88,12 @@
   color: white;
   transition: 0s ease-in-out;
   margin-bottom: 15vh;
+  box-shadow: 0px 0px 10px rgb(77, 44, 44);
+
 }
 .btnEntrar:hover{
   background-color: rgba(255,255,255, 0.5);
+  box-shadow: 0px 0px 10px rgb(225,225,225);
   color: var(--fondo-oscuro);
 }
 .btnEntrar:active{
@@ -103,37 +106,46 @@
 .tablero{
   background-color: rgb(43, 85, 124);
   border-radius: 10px;
-  box-shadow: 0px 0px 10px rgb(90,90,90);
-  border-spacing: 10px;
+  box-shadow: 0px 0px 8px rgb(100,100,100);
+  border-spacing: 8px;
 }
+
 .tablero td{
   text-align: center;
-  border-radius: 100%;
+  /*border-radius: 100%;*/
   background-size: cover;
   background-attachment: fixed;
-  background-image: linear-gradient(to bottom, rgba(94, 60, 46, 0.5) 0%, rgba(94, 60, 46, 0.5) 100%), url(../src/bg.jpg);
+  /*background-image: linear-gradient(to bottom, rgba(94, 60, 46, 0.5) 0%, rgba(94, 60, 46, 0.5) 100%), url(../src/bg.jpg);*/
   background-position: center;
   width: 1.8cm;
   height: 1.8cm;
 }
+
+/*
 .tablero td:hover{
   background-image: linear-gradient(to bottom, rgba(204, 148, 124, 0.5) 0%,rgba(204, 148, 124, 0.5) 100%), url(../src/bg.jpg);
 }
+*/
+
 
 .btnExit{
-  margin-top: 1vw;
+  margin: 1vw;
   font-family: Quicksand;
-  font-size: 2.5vw;
+  font-size: 1.5vw;
   padding-left: 5vw;
   padding-right: 5vw;
   outline: none;
   border: 1px solid transparent;
   border-radius: 10px;
   background-color: rgba(77, 44, 44, 0.5);
+  box-shadow: 0px 0px 10px rgb(77, 44, 44);
+
   color: white;
 }
 .btnExit:hover{
   background-color: rgba(255,255,255, 0.5);
+  box-shadow: 0px 0px 10px rgb(225,225,225);
+
   color: var(--fondo-oscuro);
 }
 .btnExit:active{
@@ -142,6 +154,37 @@
   box-shadow: 0px 0px 10px rgb(255,255,255);
   
 }
+
+/*fichas*/
+.default{
+  background-color: yellow;
+  width: 100%;
+  height: 100%;
+  border: none;
+  border-radius: 100%;
+  background-size: cover;
+  background-attachment: fixed;
+  background-image: linear-gradient(to bottom, rgba(94, 60, 46, 0.5) 0%, rgba(94, 60, 46, 0.5) 100%), url(../src/bg.jpg);
+  background-position: center;
+}
+.default:hover{
+  background-image: linear-gradient(to bottom, rgba(204, 148, 124, 0.5) 0%,rgba(204, 148, 124, 0.5) 100%), url(../src/bg.jpg);
+}
+.yellow{
+  background-color: yellow;
+  width: 100%;
+  height: 100%;
+  border: none;
+  border-radius: 100%;
+}
+.red{
+  background-color: red;
+  width: 100%;
+  height: 100%;
+  border: none;
+  border-radius: 100%;
+}
+
 @media screen and (max-width: 600px) {
   .logo, .logo2{
     width: 50vw;
