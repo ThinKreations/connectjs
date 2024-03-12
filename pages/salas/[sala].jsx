@@ -11,7 +11,7 @@ import rojo from  '../../src/rojo.png'
 import Link from 'next/link'
 
 Swal.fire({
-  title: 'Bienvenido',
+  title: '¡Bienvenido!',
   icon: 'success',
   showCloseButton: false,
   showConfirmButton: false,
