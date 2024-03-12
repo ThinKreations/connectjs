@@ -12,7 +12,6 @@ import Link from 'next/link'
 
 Swal.fire({
   title: 'Bienvenido',
-  text: '¡Completa una línea de 4 para ganar!',
   icon: 'success',
   showCloseButton: false,
   showConfirmButton: false,
