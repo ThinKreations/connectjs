@@ -296,7 +296,6 @@ export default function Sala(){
           [0, 0, 0, 0, 0, 0],
           [0, 0, 0, 0, 0, 0]
         ]
-        
         Valor = 0
         Valor2 = 0
         Valor3 = 0
@@ -355,9 +354,7 @@ export default function Sala(){
         consecutivas=1
         columna--
       }
-      
       console.log(Tabla)
-
     }
 
     const eliminarDatosTabla=()=>{
@@ -370,74 +367,13 @@ export default function Sala(){
         [0, 0, 0, 0, 0, 0],
         [0, 0, 0, 0, 0, 0]
       ]
-      /*
-      
-      Valor = 0
-      Valor2 = 0
-      Valor3 = 0
-      Valor4 = 0
-      i = 1
-      let fi = 0
-      for(fi = 1; fi < 7; fi++){
-        id = 'A'+fi
-        elemento = document.getElementById(id)
-        elemento.classList.remove(...elemento.classList)
-        elemento.classList.add('Home_default__JHk7u')
-      }
-      for(fi = 1; fi < 7; fi++){
-        id = 'B'+fi
-        elemento = document.getElementById(id)
-        elemento.classList.remove(...elemento.classList)
-        elemento.classList.add('Home_default__JHk7u')
-      }
-      for(fi = 1; fi < 7; fi++){
-        id = 'C'+fi
-        elemento = document.getElementById(id)
-        elemento.classList.remove(...elemento.classList)
-        elemento.classList.add('Home_default__JHk7u')
-      }
-      for(fi = 1; fi < 7; fi++){
-        id = 'D'+fi
-        elemento = document.getElementById(id)
-        elemento.classList.remove(...elemento.classList)
-        elemento.classList.add('Home_default__JHk7u')
-      }
-      for(fi = 1; fi < 7; fi++){
-        id = 'E'+fi
-        elemento = document.getElementById(id)
-        elemento.classList.remove(...elemento.classList)
-        elemento.classList.add('Home_default__JHk7u')
-      }
-      for(fi = 1; fi < 7; fi++){
-        id = 'F'+fi
-        elemento = document.getElementById(id)
-        elemento.classList.remove(...elemento.classList)
-        elemento.classList.add('Home_default__JHk7u')
-      }
-      for(fi = 1; fi < 7; fi++){
-        id = 'G'+fi
-        elemento = document.getElementById(id)
-        elemento.classList.remove(...elemento.classList)
-        elemento.classList.add('Home_default__JHk7u')
-      }
-      espaciosOcupados['A'] = 0
-      espaciosOcupados['B'] = 0
-      espaciosOcupados['C'] = 0
-      espaciosOcupados['D'] = 0
-      espaciosOcupados['E'] = 0
-      espaciosOcupados['F'] = 0
-      espaciosOcupados['G'] = 0
-      consecutivas=1
-      columna--
-      */
       Router.push('/')
     }
 
   return (
     <div>
-      <MainHead titulo={'Id de sala'}/>
+      <MainHead titulo={'ConnectJS - InGame'}/>
       <div className={styles.container} id="inicio">
-
         <center>
             <Image src={logo} className={styles.logo2} alt="Logo"/>
         </center>
@@ -497,7 +433,6 @@ export default function Sala(){
               <td onClick={()=>handleTd('F', espaciosOcupados, setEspaciosOcupados)} ><button id='F1' className={styles.default}></button></td>
               <td onClick={()=>handleTd('G', espaciosOcupados, setEspaciosOcupados)} ><button id='G1' className={styles.default}></button></td>
             </tr>
-            
           </table>
         </center>
         <div>
@@ -516,9 +451,7 @@ export default function Sala(){
           <p></p>
         </div>
         </center>
-
       </div>
     </div>
   )
-  
 }
