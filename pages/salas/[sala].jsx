@@ -366,6 +366,7 @@ export default function Sala(){
         [0, 0, 0, 0, 0, 0],
         [0, 0, 0, 0, 0, 0]
       ]
+      i=0;
       Router.push('/')
     }
 
