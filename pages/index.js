@@ -5,7 +5,7 @@ import logo from "../src/logo.png"
 import Router, { useRouter } from 'next/router'
 //import { createUser, setNombre } from './api/user'*/
 import GitIcon from '@/components/icons/GitIcon'
-
+import Link from 'next/link'
 
 
 export default function Home() {
@@ -30,7 +30,7 @@ export default function Home() {
             <p style={{textShadow:'0px 0px 5px rgb(80,80,80)'}}>{``}</p>
           </font>
             <button type='submit' onClick={()=>{Router.push('/salas/13579')}} className={styles.btnEntrar}>J U G A R</button>
-          
+            <div><p>2CM20<br/><Link href="https://github.com/ThinKreations/connectjs" target="_blank" style={{textDecoration:'none'}}>Github</Link><br/> Hernández Erwin, Jiménez Vázquez Joshua Jesús, López Lara José Daniel, Nápoles Munguía José de Jesús, Rosas Valdez Axel Brandon</p></div>
         </center>
       </div>
     </div>

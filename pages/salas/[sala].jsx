@@ -123,41 +123,29 @@ export default function Sala(){
     
     //console.log(Valor)
       //BOTTOM
+      
       let Valor = Tabla[ColNum][espaciosOcupados[columna]]
       let Valor2 = Tabla[ColNum][espaciosOcupados[columna]-1]
       let Valor3 = Tabla[ColNum][espaciosOcupados[columna]-2]
       let Valor4 = Tabla[ColNum][espaciosOcupados[columna]-3]
       let ValorM2
       let ValorM3
+      console.log(Valor, Valor2, Valor3, Valor4)
       if(Valor==Valor2&&Valor2==Valor3&&Valor3==Valor4){
         consecutivas=4
-        //console.log(Valor, Valor2, Valor3, Valor4)
       }
-      
-      /*
-      //LEFT
-      Valor = Tabla[ColNum][espaciosOcupados[columna]]
-      ColNum==0?(''):Valor2 = Tabla[ColNum-1][espaciosOcupados[columna]]
-      ColNum==0||ColNum==1?(' '):Valor3 = Tabla[ColNum-2][espaciosOcupados[columna]]
-      ColNum==0||ColNum==1||ColNum==2?(' '):Valor4 = Tabla[ColNum-3][espaciosOcupados[columna]]
-      ColNum==6?(''):ValorM2 = Tabla[ColNum+1][espaciosOcupados[columna]]
-      ColNum==6||ColNum==5?(''):ValorM3 = Tabla[ColNum+2][espaciosOcupados[columna]]
-
-      if(Valor==Valor2&&Valor2==Valor3&&Valor3==Valor4||Valor==ValorM2&&ValorM2==Valor3){
-        consecutivas=4
-        console.log(Valor, Valor2, Valor3, Valor4)
-      }
-      */
+           
       
       if(consecutivas==4){
-        console.log("Ganaste")
         Swal.fire({
-          title: `Ganó el ${turno}`,
+          title:`Ganó el ${turno}`,
           showCloseButton: false,
           showConfirmButton: false,
-          timer: 1500,
-        })  
+          timer: 1500
+        })
       }
+      
+      
     }
 
   return (
