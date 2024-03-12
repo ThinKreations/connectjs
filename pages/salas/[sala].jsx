@@ -8,7 +8,7 @@ import { useState, useEffect } from 'react'
 import Swal from 'sweetalert2'
 import Exit from '@/components/icons/Exit'
 import rojo from  '../../src/rojo.png'
-
+import Link from 'next/link'
 
 Swal.fire({
   title: 'Bienvenido',
@@ -21,9 +21,7 @@ Swal.fire({
 let i = 1, j, k, l;
 let turn, turno, nextTurno='rojo', next='red'
 
-let V0, V1, V2, V3
 let ColNum
-let WIN = 0
 let Tabla = [
   [0, 0, 0, 0, 0, 0],
   [0, 0, 0, 0, 0, 0],
@@ -37,7 +35,7 @@ let consecutivas=0
 export default function Sala(){
   
   const [espaciosOcupados, setEspaciosOcupados] = useState({ A: 0, B: 0, C: 0, D: 0, E: 0, F: 0, G: 0})
-  
+  //const [victorias, setVictorias]
   //let [Tabla, setTabla] = useState(Array.from({ length: 6 }, () => Array(7).fill(null)));
   //console.log(Tabla)
   
@@ -118,6 +116,7 @@ export default function Sala(){
       //setTabla[ColNum,nuevoEspaciosOcupados[columna]]=2
       Tabla[ColNum][nuevoEspaciosOcupados[columna]-1] = 2
     }
+    // DEFAULT CLASS Home_default__JHk7u
     //WIN = `Ganó el`
     //console.log(ColNum,nuevoEspaciosOcupados[columna])
     //console.log(Tabla[nuevoEspaciosOcupados[columna], ColNum])
@@ -125,39 +124,161 @@ export default function Sala(){
     
     //console.log(Valor)
       //BOTTOM
-      
       let Valor = Tabla[ColNum][espaciosOcupados[columna]]
       let Valor2 = Tabla[ColNum][espaciosOcupados[columna]-1]
       let Valor3 = Tabla[ColNum][espaciosOcupados[columna]-2]
       let Valor4 = Tabla[ColNum][espaciosOcupados[columna]-3]
       let ValorM2
       let ValorM3
-      console.log(Valor, Valor2, Valor3, Valor4)
+      //console.log(Valor, Valor2, Valor3, Valor4)
+      //VERIFICACION VERTICAL
       if(Valor==Valor2&&Valor2==Valor3&&Valor3==Valor4){
         consecutivas=4
-      }
-      else{
+      }else{
+        //VERIFICACION HORIZONTAL
         let Fila = espaciosOcupados[columna]
-        for(let d = 0; d < 4; d++){
-          //Valor = Tabla[ColNum + d][Fila] Metete a disc we, porfa| si quieres xd
-          /*if((ColNum - 1 + d) != undefined && Fila != undefined){
-            Valor2 = Tabla[ColNum - 1 + d][Fila]
-          }
-          if(Tabla[ColNum - 1 + d][Fila] != undefined){
-            Valor3 = Tabla[ColNum - 2 + d][Fila]
-          }
-          if(Tabla[ColNum - 1 + d][Fila] != undefined){
-            Valor4 = Tabla[ColNum - 3 + d][Fila]
-          }
-          //Valor3 = Tabla[ColNum - 2 + d][Fila]
-          //Valor4 = Tabla[ColNum - 3 + d][Fila]
-          if(Valor==Valor2&&Valor2==Valor3&&Valor3==Valor4){
-            consecutivas=4
-          }*/
-          console.log(Fila)
+        if(Tabla[0][Fila] != 0 && Tabla[0][Fila] == Tabla[1][Fila] && Tabla[0][Fila] == Tabla[2][Fila] && Tabla[0][Fila] == Tabla[3][Fila]){
+          consecutivas=4
         }
-      }     
-            
+        else{
+          if(Tabla[1][Fila] != 0 && Tabla[1][Fila] == Tabla[2][Fila] && Tabla[1][Fila] == Tabla[3][Fila] && Tabla[1][Fila] == Tabla[4][Fila]){
+            consecutivas=4
+          }
+          else{
+            if(Tabla[2][Fila] != 0 && Tabla[2][Fila] == Tabla[3][Fila] && Tabla[2][Fila] == Tabla[4][Fila] && Tabla[2][Fila] == Tabla[5][Fila]){
+              consecutivas=4
+            }
+            else{
+              if(Tabla[3][Fila] != 0 && Tabla[3][Fila] == Tabla[4][Fila] && Tabla[3][Fila] == Tabla[5][Fila] && Tabla[3][Fila] == Tabla[6][Fila]){
+                consecutivas=4
+              }
+              else{
+                //VERIFICACION DIAGONAL HACIA ARRIBA A LA DERECHA
+                if(Tabla[3][0] != 0 && Tabla[3][0] == Tabla[4][1] && Tabla[3][0] == Tabla[5][2] && Tabla[3][0] == Tabla[6][3]){
+                  consecutivas=4
+                }
+                else{
+                  if(Tabla[2][0] != 0 && Tabla[2][0] == Tabla[3][1] && Tabla[2][0] == Tabla[4][2] && Tabla[2][0] == Tabla[5][3]){
+                    consecutivas=4
+                  }
+                  else{
+                    if(Tabla[3][1] != 0 && Tabla[3][1] == Tabla[4][2] && Tabla[4][2] == Tabla[5][3] && Tabla[5][3] == Tabla[6][4]){
+                      consecutivas=4
+                    }
+                    else{
+                      if(Tabla[1][0] != 0 && Tabla[1][0] == Tabla[2][1] && Tabla[2][1] == Tabla[3][2] && Tabla[3][2] == Tabla[4][3]){
+                        consecutivas=4
+                      }
+                      else{
+                        if(Tabla[2][1] != 0 && Tabla[2][1] == Tabla[3][2] && Tabla[3][2] == Tabla[4][3] && Tabla[4][3] == Tabla[5][4]){
+                          consecutivas=4
+                        }
+                        else{
+                          if(Tabla[3][2] != 0 && Tabla[3][2] == Tabla[4][3] && Tabla[4][3] == Tabla[5][4] && Tabla[5][4] == Tabla[6][5]){
+                            consecutivas=4
+                          }
+                          else{
+                            if(Tabla[0][0] != 0 && Tabla[0][0] == Tabla[1][1] && Tabla[1][1] == Tabla[2][2] && Tabla[2][2] == Tabla[3][3]){
+                              consecutivas=4
+                            }
+                            else{
+                              if(Tabla[1][1] != 0 && Tabla[1][1] == Tabla[2][2] && Tabla[2][2] == Tabla[3][3] && Tabla[3][3] == Tabla[4][4]){
+                                consecutivas=4
+                              }
+                              else{
+                                if(Tabla[2][2] != 0 && Tabla[2][2] == Tabla[3][3] && Tabla[3][3] == Tabla[4][4] && Tabla[4][4] == Tabla[5][5]){
+                                  consecutivas=4
+                                }
+                                else{
+                                  if(Tabla[0][1] != 0 && Tabla[0][1] == Tabla[1][2] && Tabla[1][2] == Tabla[2][3] && Tabla[2][3] == Tabla[3][4]){
+                                    consecutivas=4
+                                  }
+                                  else{
+                                    if(Tabla[1][2] != 0 && Tabla[1][2] == Tabla[2][3] && Tabla[2][3] == Tabla[3][4] && Tabla[3][4] == Tabla[4][5]){
+                                      consecutivas=4
+                                    }
+                                    else{
+                                      if(Tabla[0][2] != 0 && Tabla[0][2] == Tabla[1][3] && Tabla[1][3] == Tabla[2][4] && Tabla[2][4] == Tabla[3][5]){
+                                        consecutivas=4
+                                      }
+                                      else{
+                                        //VERIFICACION DIAGONAL HACIA ABAJO A LA DERECHA
+                                        if(Tabla[0][3] != 0 && Tabla[0][3] == Tabla[1][2] && Tabla[1][2] == Tabla[2][1] && Tabla[2][1] == Tabla[3][0]){
+                                          consecutivas=4
+                                        }
+                                        else{
+                                          if(Tabla[0][4] != 0 && Tabla[0][4] == Tabla[1][3] && Tabla[1][3] == Tabla[2][2] && Tabla[2][2] == Tabla[3][1]){
+                                            consecutivas=4
+                                          }
+                                          else{
+                                            if(Tabla[1][3] != 0 && Tabla[1][3] == Tabla[2][2] && Tabla[2][2] == Tabla[3][1] && Tabla[3][1] == Tabla[4][0]){
+                                              consecutivas=4
+                                            }
+                                            else{
+                                              if(Tabla[0][5] != 0 && Tabla[0][5] == Tabla[1][4] && Tabla[1][4] == Tabla[2][3] && Tabla[2][3] == Tabla[3][2]){
+                                                consecutivas=4
+                                              }
+                                              else{
+                                                if(Tabla[1][4] != 0 && Tabla[1][4] == Tabla[2][3] && Tabla[2][3] == Tabla[3][2] && Tabla[3][2] == Tabla[4][1]){
+                                                  consecutivas=4
+                                                }
+                                                else{
+                                                  if(Tabla[2][3] != 0 && Tabla[2][3] == Tabla[3][2] && Tabla[3][2] == Tabla[4][1] && Tabla[4][1] == Tabla[5][0]){
+                                                    consecutivas=4
+                                                  }
+                                                  else{
+                                                    if(Tabla[1][5] != 0 && Tabla[1][5] == Tabla[2][4] && Tabla[2][4] == Tabla[3][3] && Tabla[3][3] == Tabla[4][2]){
+                                                      consecutivas=4
+                                                    }
+                                                    else{
+                                                      if(Tabla[2][4] != 0 && Tabla[2][4] == Tabla[3][3] && Tabla[3][3] == Tabla[4][2] && Tabla[4][2] == Tabla[5][1]){
+                                                        consecutivas=4
+                                                      }
+                                                      else{
+                                                        if(Tabla[3][3] != 0 && Tabla[3][3] == Tabla[4][2] && Tabla[4][2] == Tabla[5][1] && Tabla[5][1] == Tabla[6][0]){
+                                                          consecutivas=4
+                                                        }
+                                                        else{
+                                                          if(Tabla[2][5] != 0 && Tabla[2][5] == Tabla[3][4] && Tabla[3][4] == Tabla[4][3] && Tabla[4][3] == Tabla[5][2]){
+                                                            consecutivas=4
+                                                          }
+                                                          else{
+                                                            if(Tabla[3][4] != 0 && Tabla[3][4] == Tabla[4][3] && Tabla[4][3] == Tabla[5][2] && Tabla[5][2] == Tabla[6][1]){
+                                                              consecutivas=4
+                                                            }
+                                                            else{
+                                                              if(Tabla[3][5] != 0 && Tabla[3][5] == Tabla[4][4] && Tabla[4][4] == Tabla[5][3] && Tabla[5][3] == Tabla[6][2]){
+                                                                consecutivas=4
+                                                              }
+                                                            }
+                                                          }
+                                                        }
+                                                      }
+                                                    }
+                                                  }
+                                                }
+                                              }
+                                            }
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+  
       if(consecutivas==4){
         Swal.fire({
           title:`Ganó el ${turno}`,
@@ -165,9 +286,151 @@ export default function Sala(){
           showConfirmButton: false,
           timer: 1500
         })
+        //Router.reload()
+        Tabla = [
+          [0, 0, 0, 0, 0, 0],
+          [0, 0, 0, 0, 0, 0],
+          [0, 0, 0, 0, 0, 0],
+          [0, 0, 0, 0, 0, 0],
+          [0, 0, 0, 0, 0, 0],
+          [0, 0, 0, 0, 0, 0],
+          [0, 0, 0, 0, 0, 0]
+        ]
+        
+        Valor = 0
+        Valor2 = 0
+        Valor3 = 0
+        Valor4 = 0
+        i = 1
+        let fi = 0
+        for(fi = 1; fi < 7; fi++){
+          id = 'A'+fi
+          elemento = document.getElementById(id)
+          elemento.classList.remove(...elemento.classList)
+          elemento.classList.add('Home_default__JHk7u')
+        }
+        for(fi = 1; fi < 7; fi++){
+          id = 'B'+fi
+          elemento = document.getElementById(id)
+          elemento.classList.remove(...elemento.classList)
+          elemento.classList.add('Home_default__JHk7u')
+        }
+        for(fi = 1; fi < 7; fi++){
+          id = 'C'+fi
+          elemento = document.getElementById(id)
+          elemento.classList.remove(...elemento.classList)
+          elemento.classList.add('Home_default__JHk7u')
+        }
+        for(fi = 1; fi < 7; fi++){
+          id = 'D'+fi
+          elemento = document.getElementById(id)
+          elemento.classList.remove(...elemento.classList)
+          elemento.classList.add('Home_default__JHk7u')
+        }
+        for(fi = 1; fi < 7; fi++){
+          id = 'E'+fi
+          elemento = document.getElementById(id)
+          elemento.classList.remove(...elemento.classList)
+          elemento.classList.add('Home_default__JHk7u')
+        }
+        for(fi = 1; fi < 7; fi++){
+          id = 'F'+fi
+          elemento = document.getElementById(id)
+          elemento.classList.remove(...elemento.classList)
+          elemento.classList.add('Home_default__JHk7u')
+        }
+        for(fi = 1; fi < 7; fi++){
+          id = 'G'+fi
+          elemento = document.getElementById(id)
+          elemento.classList.remove(...elemento.classList)
+          elemento.classList.add('Home_default__JHk7u')
+        }
+        espaciosOcupados['A'] = 0
+        espaciosOcupados['B'] = 0
+        espaciosOcupados['C'] = 0
+        espaciosOcupados['D'] = 0
+        espaciosOcupados['E'] = 0
+        espaciosOcupados['F'] = 0
+        espaciosOcupados['G'] = 0
+        consecutivas=1
+        columna--
       }
       
+      console.log(Tabla)
+
+    }
+
+    const eliminarDatosTabla=()=>{
+      Tabla = [
+        [0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0]
+      ]
+      /*
       
+      Valor = 0
+      Valor2 = 0
+      Valor3 = 0
+      Valor4 = 0
+      i = 1
+      let fi = 0
+      for(fi = 1; fi < 7; fi++){
+        id = 'A'+fi
+        elemento = document.getElementById(id)
+        elemento.classList.remove(...elemento.classList)
+        elemento.classList.add('Home_default__JHk7u')
+      }
+      for(fi = 1; fi < 7; fi++){
+        id = 'B'+fi
+        elemento = document.getElementById(id)
+        elemento.classList.remove(...elemento.classList)
+        elemento.classList.add('Home_default__JHk7u')
+      }
+      for(fi = 1; fi < 7; fi++){
+        id = 'C'+fi
+        elemento = document.getElementById(id)
+        elemento.classList.remove(...elemento.classList)
+        elemento.classList.add('Home_default__JHk7u')
+      }
+      for(fi = 1; fi < 7; fi++){
+        id = 'D'+fi
+        elemento = document.getElementById(id)
+        elemento.classList.remove(...elemento.classList)
+        elemento.classList.add('Home_default__JHk7u')
+      }
+      for(fi = 1; fi < 7; fi++){
+        id = 'E'+fi
+        elemento = document.getElementById(id)
+        elemento.classList.remove(...elemento.classList)
+        elemento.classList.add('Home_default__JHk7u')
+      }
+      for(fi = 1; fi < 7; fi++){
+        id = 'F'+fi
+        elemento = document.getElementById(id)
+        elemento.classList.remove(...elemento.classList)
+        elemento.classList.add('Home_default__JHk7u')
+      }
+      for(fi = 1; fi < 7; fi++){
+        id = 'G'+fi
+        elemento = document.getElementById(id)
+        elemento.classList.remove(...elemento.classList)
+        elemento.classList.add('Home_default__JHk7u')
+      }
+      espaciosOcupados['A'] = 0
+      espaciosOcupados['B'] = 0
+      espaciosOcupados['C'] = 0
+      espaciosOcupados['D'] = 0
+      espaciosOcupados['E'] = 0
+      espaciosOcupados['F'] = 0
+      espaciosOcupados['G'] = 0
+      consecutivas=1
+      columna--
+      */
+      Router.push('/')
     }
 
   return (
@@ -241,8 +504,9 @@ export default function Sala(){
           <center>
               <font color="white" size="4">
                 <div>
-                  <p style={{color:next, margin:'8px', textShadow:'0px 0px 5px rgb(100,100,100)'}}>{`Turno del ${nextTurno}`}</p>
-                  <button onClick={()=>Router.push('/')} className={styles.btnExit}><Exit/> S A L I R</button></div>
+                  {consecutivas==4?console.log(turno)(<p style={{color:next, margin:'8px', textShadow:'0px 0px 5px rgb(100,100,100)'}}>{`Victoria del ${turno}!`}</p>):(<p style={{color:next, margin:'8px', textShadow:'0px 0px 5px rgb(100,100,100)'}}>{`Turno del ${nextTurno}`}</p>)}
+                  <button onClick={eliminarDatosTabla} className={styles.btnExit}><Exit/> S A L I R</button>
+                  </div>
               </font>
           </center>
         </div>

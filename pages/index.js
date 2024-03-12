@@ -6,7 +6,7 @@ import Router, { useRouter } from 'next/router'
 import GitIcon from '@/components/icons/GitIcon'
 import Link from 'next/link'
 import useSound from 'use-sound'
-import drum from '../src/fai.mp3'
+import drum from '../src/faigt.mp3'
 
 export default function Home() {
   const router = useRouter()
@@ -15,7 +15,7 @@ export default function Home() {
   const onSubmit = (event) => {
       let idSala = Math.floor(Math.random()*9999);
       event.preventDefault()
-      Router.push(`/salas/${idSala}`)
+      //Link.push(`/salas/${idSala}`)
   }
   
   return (
@@ -31,9 +31,11 @@ export default function Home() {
           <font color="white" size="6">
             <p style={{textShadow:'0px 0px 5px rgb(80,80,80)'}}>{``}</p>
           </font>
+          <Link href={`/salas/inGame`}>
             <form onSubmit={onSubmit}>
             <button type='submit' onClick={sound} className={styles.btnEntrar}>J U G A R</button>
             </form>
+          </Link>
             <div><p>2CM20<br/><Link href="https://github.com/ThinKreations/connectjs" target="_blank" style={{textDecoration:'none'}}>Github</Link><br/> Hernández Erwin, Jiménez Joshua, López José, Nápoles José, Rosas Axel<br/><b>Recarga la página para quitar la música.</b></p></div>
         </center>
       </div>
