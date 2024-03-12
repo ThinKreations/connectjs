@@ -6,14 +6,19 @@ import Router, { useRouter } from 'next/router'
 //import { createUser, setNombre } from './api/user'*/
 import GitIcon from '@/components/icons/GitIcon'
 import Link from 'next/link'
-
+import useSound from 'use-sound'
+import drum from '../src/muse.mp3'
 
 export default function Home() {
   const router = useRouter()
+  const [sound]=useSound(drum)
   const onSubmit = (event) => {
-      setNombre(nombre)
+      //setNombre(nombre)
+      let idSala = Math.floor(Math.random()*9999);
       event.preventDefault()
       
+      
+      Router.push(`/salas/${idSala}`)
   }
   
   return (
@@ -29,7 +34,9 @@ export default function Home() {
           <font color="white" size="6">
             <p style={{textShadow:'0px 0px 5px rgb(80,80,80)'}}>{``}</p>
           </font>
-            <button type='submit' onClick={()=>{Router.push('/salas/13579')}} className={styles.btnEntrar}>J U G A R</button>
+            <form onSubmit={onSubmit}>
+            <button type='submit' onClick={sound} className={styles.btnEntrar}>J U G A R</button>
+            </form>
             <div><p>2CM20<br/><Link href="https://github.com/ThinKreations/connectjs" target="_blank" style={{textDecoration:'none'}}>Github</Link><br/> Hernández Erwin, Jiménez Vázquez Joshua Jesús, López Lara José Daniel, Nápoles Munguía José de Jesús, Rosas Valdez Axel Brandon</p></div>
         </center>
       </div>
