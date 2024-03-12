@@ -36,7 +36,7 @@ export default function Home() {
             <button type='submit' onClick={sound} className={styles.btnEntrar}>J U G A R</button>
             </form>
           </Link>
-            <div><p>2CM20<br/><Link href="https://github.com/ThinKreations/connectjs" target="_blank" style={{textDecoration:'none'}}>Github</Link><br/> Hernández Erwin, Jiménez Joshua, López José, Nápoles José, Rosas Axel<br/><b>Recarga la página para quitar la música.</b></p></div>
+            <div><p><b>2CM20</b><br/><Link href="https://github.com/ThinKreations/connectjs" target="_blank" style={{textDecoration:'none'}}>Github</Link><br/><b>Hernández Erwin, Jiménez Joshua, López José, Nápoles José, Rosas Axel</b><br/>Recarga la página para quitar la música.<br/>Desarrollado en <b>NextJS</b></p></div>
         </center>
       </div>
     </div>
