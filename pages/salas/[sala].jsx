@@ -9,6 +9,7 @@ import Swal from 'sweetalert2'
 import Exit from '@/components/icons/Exit'
 import rojo from  '../../src/rojo.png'
 
+
 Swal.fire({
   title: 'Bienvenido',
   text: '¡Completa una línea de 4 para ganar!',
@@ -20,6 +21,7 @@ Swal.fire({
 let i = 1, j, k, l;
 let turn, turno, nextTurno='rojo', next='red'
 
+let V0, V1, V2, V3
 let ColNum
 let WIN = 0
 let Tabla = [
@@ -134,8 +136,28 @@ export default function Sala(){
       if(Valor==Valor2&&Valor2==Valor3&&Valor3==Valor4){
         consecutivas=4
       }
-           
-      
+      else{
+        let Fila = espaciosOcupados[columna]
+        for(let d = 0; d < 4; d++){
+          //Valor = Tabla[ColNum + d][Fila] Metete a disc we, porfa| si quieres xd
+          /*if((ColNum - 1 + d) != undefined && Fila != undefined){
+            Valor2 = Tabla[ColNum - 1 + d][Fila]
+          }
+          if(Tabla[ColNum - 1 + d][Fila] != undefined){
+            Valor3 = Tabla[ColNum - 2 + d][Fila]
+          }
+          if(Tabla[ColNum - 1 + d][Fila] != undefined){
+            Valor4 = Tabla[ColNum - 3 + d][Fila]
+          }
+          //Valor3 = Tabla[ColNum - 2 + d][Fila]
+          //Valor4 = Tabla[ColNum - 3 + d][Fila]
+          if(Valor==Valor2&&Valor2==Valor3&&Valor3==Valor4){
+            consecutivas=4
+          }*/
+          console.log(Fila)
+        }
+      }     
+            
       if(consecutivas==4){
         Swal.fire({
           title:`Ganó el ${turno}`,
