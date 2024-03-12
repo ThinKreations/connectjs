@@ -20,7 +20,7 @@ export default function Home() {
   
   return (
     <div>
-      <MainHead titulo="Connect 4 - 2CM20"/>
+      <MainHead titulo="ConnectJS"/>
       <div className={styles.container} id="inicio">
         <div className={styles.header}>
           <center>
